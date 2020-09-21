@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  config:
+    image: config
+    ports:
+      - "8888:8888"
+
+  backend:
+    image: backend
+    ports:
+      - "8080:8080"
+    environment:
+      - CONFIG_HOST=config
+

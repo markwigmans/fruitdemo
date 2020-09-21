@@ -13,7 +13,8 @@ public class OracleTestConfiguration {
 
     @Bean
     OracleContainer oracleContainer() {
-        OracleContainer oracleContainer = new OracleContainer("oracleinanutshell/oracle-xe-11g:1.0.0");
+        OracleContainer oracleContainer = new OracleContainer("oracleinanutshell/oracle-xe-11g:latest");
+        //OracleContainer oracleContainer = new OracleContainer("quay.io/maksymbilenko/oracle-12c:latest");
         oracleContainer.start();
         return oracleContainer;
     }

@@ -37,7 +37,7 @@ class FruitApiTest {
     void all() throws JsonProcessingException {
         String response = restTemplate.getForEntity(baseUrl + "all", String.class).getBody();
         assertThat(response, not(blankOrNullString()));
-        Fruit[] fruits = MAPPER.readValue(response, Fruit[].class);
+        FruitDTO[] fruits = MAPPER.readValue(response, FruitDTO[].class);
         assertThat(fruits.length, is(5));
     }
 
@@ -45,7 +45,7 @@ class FruitApiTest {
     void id() throws JsonProcessingException {
         int id = 2;
         String response = restTemplate.getForEntity(baseUrl + id, String.class).getBody();
-        Fruit fruit = MAPPER.readValue(response, Fruit.class);
-        assertThat(fruit.getFruitId(), is(id));
+        FruitDTO fruit = MAPPER.readValue(response, FruitDTO.class);
+        assertThat(fruit.getId(), is(id));
     }
 }

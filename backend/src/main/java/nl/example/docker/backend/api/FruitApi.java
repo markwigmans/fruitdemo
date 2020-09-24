@@ -7,14 +7,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nl.example.docker.backend.data.Fruit;
 import nl.example.docker.backend.data.FruitRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @RestController
+@CrossOrigin({"http://localhost:4200", "http://localhost:8081"})
 @RequestMapping("/fruit")
 @Slf4j
 @Tag(name = "Fruit API", description = "Fruit Interface")
@@ -22,18 +24,22 @@ import java.util.Optional;
 public class FruitApi {
 
     private final FruitRepository repository;
+    private final FruitMapper mapper;
+
 
     @GetMapping("/all")
     @Operation(summary = "Vraag alle Fruit")
-    public Iterable<Fruit> all() {
+    public Iterable<FruitDTO> all() {
         log.info("all()");
-        return repository.findAll();
+        List<Fruit> fruits = repository.findAll();
+        return fruits.stream().map(mapper::toDTO).collect(Collectors.toList());
     }
 
     @GetMapping("/{fruitId}")
     @Operation(summary = "Vraag fruit op met fruit-id")
-    public Optional<Fruit> find(@Parameter(description = "id of customer") @PathVariable int fruitId) {
+    public ResponseEntity<FruitDTO> find(@Parameter(description = "id of customer") @PathVariable int fruitId) {
         log.info("find({})", fruitId);
-        return repository.findByFruitId(fruitId);
+        Optional<Fruit> fruit = repository.findByFruitId(fruitId);
+        return fruit.map(value -> ResponseEntity.ok(mapper.toDTO(value))).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 }

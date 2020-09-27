@@ -1,2 +1,1 @@
-test: 12345
-extra: 42
+backend.cors: [ "http://localhost:4200","http://localhost:8081","http://localhost:9081" ]

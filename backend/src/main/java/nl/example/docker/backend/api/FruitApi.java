@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @RestController
-@CrossOrigin({"http://localhost:4200", "http://localhost:8081", "http://localhost:9081"})
+@CrossOrigin("${backend.cors:http://localhost:8081}")
 @RequestMapping("/fruit")
 @Slf4j
 @Tag(name = "Fruit API", description = "Fruit Interface")

@@ -1,15 +1,25 @@
-version: "3"
+version: "2"
 
 services:
   config:
-    image: config
+    image: hyness/spring-cloud-config-server:jdk11
     ports:
       - "8888:8888"
+    environment:
+      SPRING_PROFILES_ACTIVE: native
+    volumes:
+      - ./config-repo:/config
+
+  frontend:
+    image: frontend
+    ports:
+      - "9081:8081"
+    environment:
+      CONFIG_HOST: config
 
   backend:
     image: backend
     ports:
-      - "8080:8080"
+      - "9080:8080"
     environment:
-      - CONFIG_HOST=config
-
+      CONFIG_HOST: config

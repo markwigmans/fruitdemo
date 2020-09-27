@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RestController
-@CrossOrigin({"http://localhost:4200", "http://localhost:8081"})
+@CrossOrigin({"http://localhost:4200", "http://localhost:8081", "http://localhost:9081"})
 @RequestMapping("/fruit")
 @Slf4j
 @Tag(name = "Fruit API", description = "Fruit Interface")

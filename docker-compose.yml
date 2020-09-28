@@ -27,7 +27,7 @@ services:
 #
 # Oracle Database
 #
-  db:
+  oracle:
     image: oracleinanutshell/oracle-xe-11g
     ports:
       - 1521:1521
@@ -36,7 +36,7 @@ services:
 #
 # MySQL Database
 #
-#  db:
+#  mysql:
 #    image: mysql:5.7
 #    ports:
 #      - "3306:3306"

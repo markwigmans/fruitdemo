@@ -1,6 +1,7 @@
 package nl.example.docker.backend.data;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.lang.NonNull;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class DataConfig implements ApplicationListener<ApplicationReadyEvent> {
 
     private final FruitRepository repository;
@@ -22,7 +24,9 @@ public class DataConfig implements ApplicationListener<ApplicationReadyEvent> {
     }
 
     void saveIfNotExist(Fruit fruit) {
+        log.info("add '{}'", fruit);
         if (repository.findByFruitId(fruit.getFruitId()).isEmpty()) {
+            log.info("'{}' saved", fruit);
             repository.save(fruit);
         }
     }

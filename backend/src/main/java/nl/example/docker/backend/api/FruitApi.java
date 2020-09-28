@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin("${backend.cors:http://localhost:8081}")
+@CrossOrigin("*")
 @RequestMapping("/fruit")
 @Slf4j
 @Tag(name = "Fruit API", description = "Fruit Interface")
@@ -24,7 +24,6 @@ public class FruitApi {
 
     private final FruitRepository repository;
     private final FruitMapper mapper;
-
 
     @GetMapping("/all")
     @Operation(summary = "Vraag alle Fruit")

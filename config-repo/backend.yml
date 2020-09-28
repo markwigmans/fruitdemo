@@ -1,1 +1,15 @@
-backend.cors: [ "http://localhost:4200","http://localhost:8081","http://localhost:9081" ]
+#
+# Oracle DB settings
+#
+#spring.datasource.url: jdbc:oracle:thin:@localhost:1521:xe
+spring.datasource.url: jdbc:oracle:thin:@db:1521:xe
+spring.datasource.username: system
+spring.datasource.password: oracle
+
+#
+# MySQL settings
+#
+#spring.datasource.url: jdbc:mysql://localhost:3306/demo
+#spring.datasource.url: jdbc:mysql://db:3306/demo
+#spring.datasource.username: demo
+#spring.datasource.password: demo

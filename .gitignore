@@ -31,4 +31,7 @@ hs_err_pid*
 # Maven
 target/
 
+# Databases
+db_data/
+
 

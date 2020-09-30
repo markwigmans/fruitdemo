@@ -32,20 +32,11 @@ class FruitApiTest {
         baseUrl = "http://localhost:" + port + "/fruit/";
     }
 
-
     @Test
     void all() throws JsonProcessingException {
         String response = restTemplate.getForEntity(baseUrl + "all", String.class).getBody();
         assertThat(response, not(blankOrNullString()));
         FruitDTO[] fruits = MAPPER.readValue(response, FruitDTO[].class);
         assertThat(fruits.length, is(5));
-    }
-
-    @Test
-    void id() throws JsonProcessingException {
-        int id = 2;
-        String response = restTemplate.getForEntity(baseUrl + id, String.class).getBody();
-        FruitDTO fruit = MAPPER.readValue(response, FruitDTO.class);
-        assertThat(fruit.getId(), is(id));
     }
 }

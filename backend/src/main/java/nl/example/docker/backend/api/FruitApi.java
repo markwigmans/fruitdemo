@@ -32,12 +32,4 @@ public class FruitApi {
         List<Fruit> fruits = repository.findAll();
         return fruits.stream().map(mapper::toDTO).collect(Collectors.toList());
     }
-
-    @GetMapping("/{fruitId}")
-    @Operation(summary = "Vraag fruit op met fruit-id")
-    public ResponseEntity<FruitDTO> find(@Parameter(description = "id of customer") @PathVariable int fruitId) {
-        log.info("find({})", fruitId);
-        Optional<Fruit> fruit = repository.findByFruitId(fruitId);
-        return fruit.map(value -> ResponseEntity.ok(mapper.toDTO(value))).orElseGet(() -> ResponseEntity.badRequest().build());
-    }
 }

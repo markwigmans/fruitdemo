@@ -10,10 +10,11 @@
     </parent>
     <groupId>nl.example.docker</groupId>
     <artifactId>parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
 
     <properties>
+        <revision>0.0.1-SNAPSHOT</revision>
         <java.version>11</java.version>
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <testcontainers.version>1.14.3</testcontainers.version>
@@ -40,7 +41,7 @@
             <dependency>
                 <groupId>nl.example.docker</groupId>
                 <artifactId>client</artifactId>
-                <version>${project.version}</version>
+                <version>${revision}</version>
                 <scope>runtime</scope>
             </dependency>
 

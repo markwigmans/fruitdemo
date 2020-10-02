@@ -8,14 +8,6 @@ services:
     volumes:
       - ./config-repo:/config
 
-#    image: hyness/spring-cloud-config-server
-#    ports:
-#      - "8888"
-#    environment:
-#      SPRING_PROFILES_ACTIVE: native
-#    volumes:
-#      - ./config-repo:/config
-
   frontend:
     image: demo/frontend
     ports:

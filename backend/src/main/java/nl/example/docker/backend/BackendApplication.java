@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Docker Demo", version = "v1", description = "REST interface voor Docker Demo"))
+@OpenAPIDefinition(info = @Info(title = "Docker Demo - Backend", version = "v1", description = "REST interface voor Docker Demo Backend"))
 @Slf4j
 public class BackendApplication {
 

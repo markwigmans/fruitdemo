@@ -1,17 +1,15 @@
 package nl.example.docker.backend.api;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import nl.example.docker.backend.data.Fruit;
 import nl.example.docker.backend.data.FruitRepository;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -26,10 +24,9 @@ public class FruitApi {
     private final FruitMapper mapper;
 
     @GetMapping("/all")
-    @Operation(summary = "Vraag alle Fruit")
+    @Operation(summary = "Vraag alle Fruit op")
     public Iterable<FruitDTO> all() {
         log.info("all()");
-        List<Fruit> fruits = repository.findAll();
-        return fruits.stream().map(mapper::toDTO).collect(Collectors.toList());
+        return repository.findAll().stream().map(mapper::toDTO).collect(Collectors.toList());
     }
 }

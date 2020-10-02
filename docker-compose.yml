@@ -30,8 +30,8 @@ services:
   oracle:
     image: oracleinanutshell/oracle-xe-11g
     ports:
-      - 1521:1521
-      - 5500:5500
+      - "1521:1521"
+      - "5500:5500"
 
 #
 # MySQL Database

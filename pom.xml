@@ -187,7 +187,7 @@
                                 <enabled>true</enabled>
                             </layers>
                             <image>
-                                <name>${project.name}</name>
+                                <name>demo/${project.name}</name>
                             </image>
                         </configuration>
                     </plugin>

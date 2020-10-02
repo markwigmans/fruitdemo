@@ -19,9 +19,7 @@ public class IndexController {
     @RequestMapping("/")
     public ModelAndView index() {
         log.debug("index() request");
-        Map<String, Object> params = new HashMap<>();
-        params.put("apiUrl", apiUrl);
-
+        Map<String, Object> params = Map.of("apiUrl", apiUrl);
         return new ModelAndView("index", params);
     }
 

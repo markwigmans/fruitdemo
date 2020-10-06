@@ -8,14 +8,32 @@ services:
     volumes:
       - ./config-repo:/config
 
+  nginx-frontend:
+    image: nginx:latest
+    volumes:
+      - ./nginx-fe.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - frontend
+    ports:
+      - "9081:4000"
+
   frontend:
     image: demo/frontend
     depends_on:
       - config
     ports:
-      - "9081:8081"
+      - "8081"
     environment:
       CONFIG_HOST: config
+
+  nginx-backend:
+    image: nginx:latest
+    volumes:
+      - ./nginx-be.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - backend
+    ports:
+      - "9080:4000"
 
   backend:
     image: demo/backend
@@ -23,7 +41,7 @@ services:
       - config
       - oracle
     ports:
-      - "9080:8080"
+      - "8080"
     environment:
       CONFIG_HOST: config
 

@@ -17,7 +17,7 @@ public class IndexController {
 
     @RequestMapping("/")
     public ModelAndView index() {
-        log.debug("index() request");
+        log.info("index() request");
         Map<String, Object> params = Map.of("apiUrl", apiUrl);
         return new ModelAndView("index", params);
     }
@@ -25,7 +25,7 @@ public class IndexController {
     // single page application, so forward all calls
     @RequestMapping("/**/{path:[^\\.]+}")
     public String forward() {
-        log.debug("forward request");
+        log.info("forward request");
         return "forward:/";
     }
 }

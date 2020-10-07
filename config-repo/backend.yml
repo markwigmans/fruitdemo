@@ -4,7 +4,8 @@
 #spring.datasource.url: jdbc:oracle:thin:@localhost:1521:xe
 spring.datasource.url: jdbc:oracle:thin:@oracle:1521:xe
 spring.datasource.username: system
-spring.datasource.password: oracle
+# pwd: oracle
+spring.datasource.password: '{cipher}5ddc13250859f0dcca8af3684d617fe389d708134a23cb9615348333a0afecef'
 
 #
 # MySQL settings

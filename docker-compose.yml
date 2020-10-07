@@ -4,7 +4,7 @@ services:
   config:
     image: demo/config
     ports:
-      - "8888"
+      - "8888:8888"
     volumes:
       - ./config-repo:/config
 

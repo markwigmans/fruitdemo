@@ -1,8 +1,9 @@
-package nl.example.docker.frontend.controller;
+package nl.example.docker.frontend.api;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,7 +13,7 @@ import java.util.Map;
 @Slf4j
 public class IndexController {
 
-    @Value("${backend.url:http://localhost:8080}")
+    @Value("${api.url:http://localhost:8081/backend}")
     private String apiUrl;
 
     @RequestMapping("/")

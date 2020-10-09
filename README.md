@@ -41,13 +41,13 @@ Configuration is done via Spring Cloud Config
 A docker compose script is provided. The directory *config-repo* contains the configuration used. Start the application with:
 
 ``
-docker-compose up
+docker-compose up -d
 ``
 
 To start the scaling version do:
 
 ``
-docker-compose -f docker-compose-scale.yml up --scale frontend=2 --scale backend=2
+docker-compose -f docker-compose-scale.yml up --scale frontend=2 --scale backend=2 -d
 ``
 
 The ports used, are on purpose different from the application defaults, 
@@ -61,6 +61,18 @@ to be sure you test against the *runable jar* vs docker version.
 The application works with a MySQL database as well. To make this work, do the following:
 - modify the backend configuration accordingly;
 - if needed uncomment the MySQL service in the *docker-compose* file.
+
+### Encrypted Config Parameters
+Spring Config Server supports [encryption](https://cloud.spring.io/spring-cloud-config/reference/html/#_encryption_and_decryption) 
+of parameters. Perform the following steps:
+
+We assume that we the value to be encrypted is *secret*:
+
+1. start the config server used;
+1. run ``curl <config-server>/encrypt -d secret``
+1. add as property value: ```'{cipher}\<encrypt response\>'``` instead of *secret* to the property file.
+
+Parameters are encrypted via symmetrical encryption. The environment variable **CONFIG_KEY** defines the key used.
 
 # Background Information
 ## Example Config Call

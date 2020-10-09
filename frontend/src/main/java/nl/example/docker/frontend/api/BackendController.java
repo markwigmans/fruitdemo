@@ -18,7 +18,7 @@ public class BackendController {
 
     private final RestTemplate restTemplate;
 
-    @Value("${backend.url:http://localhost:8081/backend}")
+    @Value("${backend.url:http://localhost:8080/}")
     private String backendUrl;
 
     // unclear why pattern matching doesn't work with path variable {*path}

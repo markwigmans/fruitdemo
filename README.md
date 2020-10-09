@@ -21,7 +21,12 @@ mvn install | build self executable JAR files
 mvn install -P docker | build docker images
 
 ## Configuration
-Configuration is done via Spring Cloud Config
+Configuration is done via Spring Cloud Config.
+
+| Component | Configuration file
+| --------- | ------------------ |
+| backend | backend.yml
+| frontend | frontend.yml
 
 ### Backend
 
@@ -35,7 +40,8 @@ Configuration is done via Spring Cloud Config
 
 | Property | Description | Default |
 | -------- | ----------- | ------- |
-| backend.url | Url where to find the REST interface of the backend | http://localhost:8080 |
+| api.url | URL the Angular App connects to for the backend data | http://localhost:8081/backend
+| backend.url | URL where to find the REST interface of the backend | http://localhost:8080 |
 
 ## Run Application
 A docker compose script is provided. The directory *config-repo* contains the configuration used. Start the application with:
@@ -50,8 +56,7 @@ To start the scaling version do:
 docker-compose -f docker-compose-scale.yml up --scale frontend=2 --scale backend=2 -d
 ``
 
-The ports used, are on purpose different from the application defaults, 
-to be sure you test against the *runable jar* vs docker version. 
+The ports used are on purpose different from the application defaults, to be sure you test against the *runable jar* vs docker version. 
 
 | component | port (runable jar) | port (docker) |
 | --------- |:--------:|:-----------:|
@@ -70,18 +75,18 @@ We assume that we the value to be encrypted is *secret*:
 
 1. start the config server used;
 1. run ``curl <config-server>/encrypt -d secret``
-1. add as property value: ```'{cipher}\<encrypt response\>'``` instead of *secret* to the property file.
+1. replace as property value: ```'{cipher}<encrypt response>'``` instead of *secret* value in the property file.
 
 Parameters are encrypted via symmetrical encryption. The environment variable **CONFIG_KEY** defines the key used.
 
 # Background Information
 ## Example Config Call
-The following call requests the backend information from the configuration server 
-[Backend Configuration](http://localhost:8888/backend/development/master).
+The following call, requests the backend information from the configuration server:
+``http://localhost:8888/backend/development/master``.
 
 ## REST interface
-The REST interface of the backend is documented with OpenAPI and can be found (docker version): 
-[Backend REST Interface](http://localhost:9080/swagger-ui.html).
+The REST interface of the backend is documented with OpenAPI and can be found: 
+``http://localhost:9080/swagger-ui.html``.
 
 ## Background Information
 - [Building a Web Application with Spring Boot and Angular](https://www.baeldung.com/spring-boot-angular-web);

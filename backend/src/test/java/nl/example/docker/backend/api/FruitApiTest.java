@@ -3,6 +3,7 @@ package nl.example.docker.backend.api;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.example.docker.backend.data.Fruit;
+import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.context.annotation.Import;
+
+import java.util.Arrays;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -34,9 +37,10 @@ class FruitApiTest {
 
     @Test
     void all() throws JsonProcessingException {
-        String response = restTemplate.getForEntity(baseUrl + "all", String.class).getBody();
+        var response = restTemplate.getForEntity(baseUrl + "all", String.class).getBody();
         assertThat(response, not(blankOrNullString()));
-        FruitDTO[] fruits = MAPPER.readValue(response, FruitDTO[].class);
-        assertThat(fruits.length, is(5));
+        var fruits = Arrays.asList(MAPPER.readValue(response, FruitDTO[].class));
+        assertThat("check size", fruits.size(), is(5));
+        assertThat("check if all userId's are unique", fruits.stream().map(FruitDTO::getId).distinct().count(), CoreMatchers.is((long) fruits.size()));
     }
 }

@@ -11,8 +11,14 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+
+    services:
+      oracle:
+        image: oracleinanutshell/oracle-xe-11g
+        ports:
+          - "1521:1521"
+          - "5500:5500"
 
     steps:
     - uses: actions/checkout@v2
@@ -29,4 +35,4 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
 
     - name: Build with Maven
-      run: mvn -B package --file pom.xml -Dmaven.test.skip=true
+      run: mvn -B package --file pom.xml

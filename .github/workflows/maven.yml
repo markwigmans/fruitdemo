@@ -34,8 +34,8 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
 
-    - name: Install Google Chrome # Using shell script to install Google Chrome
-        run: |
+    - name: Install Google Chrome
+      run: |
           chmod +x ./scripts/InstallChrome.sh
            ./scripts/InstallChrome.sh
 

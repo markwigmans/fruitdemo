@@ -35,4 +35,4 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
 
     - name: Build with Maven
-      run: mvn -B package --file pom.xml -Dspring.profiles.active=db-service -Dtest.db.host=oracle
+      run: mvn -B package --file pom.xml -Dspring.profiles.active=db-service

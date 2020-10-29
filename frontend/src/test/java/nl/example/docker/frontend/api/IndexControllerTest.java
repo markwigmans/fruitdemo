@@ -60,7 +60,7 @@ class IndexControllerTest {
     @DisplayName("Loading Angular App")
     void testLaunchAngular() {
         driver.get(baseUrl + "/");
-        ngDriver.waitForAngularRequestsToFinish();\
+        ngDriver.waitForAngularRequestsToFinish();
         assertThat(driver.getTitle(), is("Docker Demo - Frontend"));
     }
 

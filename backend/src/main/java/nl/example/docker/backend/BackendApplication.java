@@ -16,8 +16,12 @@ import java.util.TimeZone;
 public class BackendApplication {
 
     public static void main(String[] args) {
+        SpringApplication.run(BackendApplication.class, args);
+    }
+
+    @PostConstruct
+    public void init() {
         // Oracle driver doesn't like timezone 'etc/UTC', this prevents this.
         System.setProperty("oracle.jdbc.timezoneAsRegion", "false");
-        SpringApplication.run(BackendApplication.class, args);
     }
 }

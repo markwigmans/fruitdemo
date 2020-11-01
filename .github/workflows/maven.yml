@@ -13,6 +13,8 @@ jobs:
   build:
     name: Test - Unit & Integration
     runs-on: ubuntu-latest
+    env:
+      REPO: ${{ secrets.DOCKER_REPO }}
 
     services:
       oracle:

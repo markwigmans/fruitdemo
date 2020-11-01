@@ -47,13 +47,13 @@ Configuration is done via Spring Cloud Config.
 A docker compose script is provided. The directory *config-repo* contains the configuration used. Start the application with:
 
 ``
-docker-compose up -d
+docker-compose --env-file env.dev up -d
 ``
 
 To start the scaling version do:
 
 ``
-docker-compose -f docker-compose-scale.yml up --scale frontend=2 --scale backend=2 -d
+docker-compose -f docker-compose-scale.yml --env-file env.dev up --scale frontend=2 --scale backend=2 -d
 ``
 
 The ports used are on purpose different from the application defaults, to be sure you test against the *runable jar* vs docker version. 
@@ -87,6 +87,9 @@ The following call, requests the backend information from the configuration serv
 ## REST interface
 The REST interface of the backend is documented with OpenAPI and can be found: 
 ``http://localhost:9080/swagger-ui.html``.
+
+## Known issue
+
 
 ## Background Information
 - [Building a Web Application with Spring Boot and Angular](https://www.baeldung.com/spring-boot-angular-web);

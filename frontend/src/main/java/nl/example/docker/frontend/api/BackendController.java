@@ -25,7 +25,7 @@ public class BackendController {
     @GetMapping("/**")
     public String backend(HttpServletRequest request) {
         log.info("backend forward request: '{}'", request.getRequestURI());
-        String postfix= request.getRequestURI().replaceFirst("/backend", "");
+        String postfix = request.getRequestURI().replaceFirst("/backend", "");
 
         return restTemplate.getForObject(backendUrl + postfix, String.class);
     }

@@ -3,7 +3,7 @@ package nl.example.docker.frontend.api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
@@ -15,7 +15,7 @@ public class IndexController {
     @Value("${api.url:http://localhost:8081/backend}")
     private String apiUrl;
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public ModelAndView index() {
         log.info("index() request");
         Map<String, Object> params = Map.of("apiUrl", apiUrl);
@@ -23,7 +23,7 @@ public class IndexController {
     }
 
     // single page application, so forward all calls
-    @RequestMapping("/**/{path:[^\\.]+}")
+    @GetMapping("/**/{path:[^\\.]+}")
     public String forward() {
         log.info("forward request");
         return "forward:/";

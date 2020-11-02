@@ -12,6 +12,7 @@
     <artifactId>parent</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
+    <name>Fruitdemo - Docker demonstrator</name>
 
     <properties>
         <revision>0.0.1-SNAPSHOT</revision>

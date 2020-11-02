@@ -88,11 +88,15 @@ The following call, requests the backend information from the configuration serv
 The REST interface of the backend is documented with OpenAPI and can be found: 
 ``http://localhost:9080/swagger-ui.html``.
 
-## Known issue
-
+## Useful docker-compose commands
+| command | meaning |
+| ------- | ------- |
+| ``docker-compose up``   | *start* all the docker containers in the docker-compose file
+| ``docker-compose down`` | *stop* all the docker containers in the docker-compose file
+| ``docker-compose pull`` | *update* all the docker images in the docker-compose file
 
 ## Background Information
 - [Building a Web Application with Spring Boot and Angular](https://www.baeldung.com/spring-boot-angular-web);
 - [How to use environment variables to configure your Angular application without a rebuild](https://www.jvandemo.com/how-to-use-environment-variables-to-configure-your-angular-application-without-a-rebuild/);
 - [How to Use Docker Compose to Run Multiple Instances of a Service in Development](https://pspdfkit.com/blog/2018/how-to-use-docker-compose-to-run-multiple-instances-of-a-service-in-development/).
-
+- [Continuous deployment using Docker, GitHub Actions, and Web-hooks](https://levelup.gitconnected.com/automated-deployment-using-docker-github-actions-and-webhooks-54018fc12e32)

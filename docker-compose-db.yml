@@ -1,5 +1,9 @@
 version: "3.8"
 
+#
+# only start the database
+#
+
 services:
 #
 # Oracle Database
@@ -9,4 +13,3 @@ services:
     ports:
       - "1521:1521"
       - "5500:5500"
-

@@ -1,5 +1,9 @@
 version: "3.8"
 
+#
+# Start all services 
+#
+
 services:
   config:
     image: ${REPO}/frd-config

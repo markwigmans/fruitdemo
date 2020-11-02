@@ -1,8 +1,12 @@
 version: "3.8"
 
+#
+# Start all services with load balancer in between for scaling option
+#
+
 services:
   config:
-    image: demo/config
+    image: ${REPO}/frd-config
     ports:
       - "8888:8888"
     volumes:
@@ -18,7 +22,7 @@ services:
       - "9081:4000"
 
   frontend:
-    image: demo/frontend
+    image: ${REPO}/frd-frontend
     depends_on:
       - config
     ports:
@@ -36,7 +40,7 @@ services:
       - "9080:4000"
 
   backend:
-    image: demo/backend
+    image: ${REPO}/frd-backend
     depends_on:
       - config
       - oracle
@@ -53,19 +57,3 @@ services:
     ports:
       - "1521:1521"
       - "5500:5500"
-
-#
-# MySQL Database
-#
-#  mysql:
-#    image: mysql:5.7
-#    ports:
-#      - "3306:3306"
-#    volumes:
-#      - ./db_data:/var/lib/mysql
-#    restart: always
-#    environment:
-#      MYSQL_ROOT_PASSWORD: root
-#      MYSQL_DATABASE: demo
-#      MYSQL_USER: demo
-#      MYSQL_PASSWORD: demo

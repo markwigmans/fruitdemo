@@ -24,7 +24,7 @@ public class DataConfig implements ApplicationListener<ApplicationReadyEvent> {
     }
 
     void saveIfNotExist(Fruit fruit) {
-        log.info("add '{}'", fruit);
+        log.info("check to add '{}'", fruit);
         if (repository.findByFruitId(fruit.getFruitId()).isEmpty()) {
             log.info("'{}' saved", fruit);
             repository.save(fruit);

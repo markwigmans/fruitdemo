@@ -36,4 +36,4 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Build with Maven
-        run: mvn -B package --file pom.xml -Dspring.profiles.active=db-service -Doracle.jdbc.timezoneAsRegion=false
+        run: mvn -B package -Dspring.profiles.active=db-service -Doracle.jdbc.timezoneAsRegion=false

@@ -6,7 +6,6 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
@@ -16,7 +15,6 @@ public class DataConfig implements ApplicationListener<ApplicationReadyEvent> {
     private final FruitRepository repository;
 
     @Override
-    @Transactional
     public void onApplicationEvent(@NonNull ApplicationReadyEvent applicationReadyEvent) {
         saveIfNotExist(new Fruit(null, 1, "Banaan"));
         saveIfNotExist(new Fruit(null, 2, "Druif"));

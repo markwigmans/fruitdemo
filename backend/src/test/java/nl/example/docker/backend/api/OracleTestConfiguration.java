@@ -43,7 +43,7 @@ public class OracleTestConfiguration {
     @Profile("db-service")
     DataSource dataSourceWithService(@Value("${test.db.host:localhost}") String host,
                                      @Value("${test.db.user:system}") String user,
-                                    @Value("${test.db.pwd:oracle}") String password) {
+                                     @Value("${test.db.pwd:oracle}") String password) {
         log.info("use datasource without oracle container");
         var hikariConfig = new HikariConfig();
         hikariConfig.setJdbcUrl(String.format("jdbc:oracle:thin:@%s:1521:xe", host));

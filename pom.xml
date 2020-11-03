@@ -26,7 +26,7 @@
         <jacoco.version>0.8.5</jacoco.version>
         <surefire.version>2.22.2</surefire.version>
         <checkstyle.version>3.0.0</checkstyle.version>
-        <code.coverage.exclusions> </code.coverage.exclusions>
+        <code.coverage.exclusions></code.coverage.exclusions>
         <aggregate.report.dir>grpc/target/site/jacoco-aggregate/jacoco.xml</aggregate.report.dir>
 
         <docker.repo>demo</docker.repo>
@@ -243,9 +243,6 @@
 
         <profile>
             <id>coverage</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <build>
                 <plugins>
                     <plugin>
@@ -256,6 +253,12 @@
                                 <id>prepare-agent</id>
                                 <goals>
                                     <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>report</id>
+                                <goals>
+                                    <goal>report</goal>
                                 </goals>
                             </execution>
                         </executions>
@@ -273,9 +276,6 @@
                 <sonar.exclusions>${code.coverage.exclusions}</sonar.exclusions>
                 <sonar.report>${aggregate.report.dir}</sonar.report>
             </properties>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
             <build>
                 <plugins>
                     <plugin>

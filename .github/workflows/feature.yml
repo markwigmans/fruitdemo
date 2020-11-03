@@ -6,6 +6,7 @@ name: Feature
 on:
   push:
     branches-ignore:
+      - 'develop'
       - 'master'
       - 'release*'
 

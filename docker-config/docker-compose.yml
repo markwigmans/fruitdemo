@@ -10,7 +10,7 @@ services:
     ports:
       - "8888:8888"
     volumes:
-      - ./config-repo:/config
+      - ../config-repo:/config
 
   frontend:
     image: ${REPO}/frd-frontend

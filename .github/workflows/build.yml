@@ -45,3 +45,5 @@ jobs:
 
       - name: SonarCloud Scan
         run: mvn -B verify -Pcoverage,sonar -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dspring.profiles.active=db-service -Doracle.jdbc.timezoneAsRegion=false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

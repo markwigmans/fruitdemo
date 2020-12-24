@@ -15,13 +15,6 @@ jobs:
     name: Test - Unit & Integration
     runs-on: ubuntu-latest
 
-    services:
-      oracle:
-        image: oracleinanutshell/oracle-xe-11g
-        ports:
-          - "1521:1521"
-          - "5500:5500"
-
     steps:
       - uses: actions/checkout@v2
 
@@ -33,10 +26,9 @@ jobs:
       - name: Cache local Maven repository
         uses: actions/cache@v2
         with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
 
       - name: Build with Maven
         run: mvn -B package -Dspring.profiles.active=db-service -Doracle.jdbc.timezoneAsRegion=false

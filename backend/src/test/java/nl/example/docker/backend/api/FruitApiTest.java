@@ -7,26 +7,38 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ContextConfiguration;
+import org.testcontainers.containers.OracleContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.Arrays;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-@Import(OracleTestConfiguration.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Testcontainers
+@ContextConfiguration(initializers = {FruitApiTest.Initializer.class})
 class FruitApiTest {
 
-    static final ObjectMapper MAPPER = new ObjectMapper();
+    @Container
+    private static final OracleContainer oracleContainer = new OracleContainer("oracleinanutshell/oracle-xe-11g:latest");
 
     @LocalServerPort
     private int port;
 
     @Autowired
-    private TestRestTemplate restTemplate;
+    TestRestTemplate restTemplate;
+    @Autowired
+    ObjectMapper objectMapper;
+
     private String baseUrl;
 
     @BeforeEach
@@ -38,8 +50,21 @@ class FruitApiTest {
     void all() throws JsonProcessingException {
         var response = restTemplate.getForEntity(baseUrl + "all", String.class).getBody();
         assertThat(response, not(blankOrNullString()));
-        var fruits = Arrays.asList(MAPPER.readValue(response, FruitDTO[].class));
+        var fruits = Arrays.asList(objectMapper.readValue(response, FruitDTO[].class));
         assertThat("check size", fruits.size(), is(5));
         assertThat("check if all userId's are unique", fruits.stream().map(FruitDTO::getId).distinct().count(), CoreMatchers.is((long) fruits.size()));
+    }
+
+    /**
+     * Initialize test environment
+     */
+    static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+        public void initialize(ConfigurableApplicationContext configurableApplicationContext) {
+            TestPropertyValues.of(
+                    "spring.datasource.url=" + oracleContainer.getJdbcUrl(),
+                    "spring.datasource.username=" + oracleContainer.getUsername(),
+                    "spring.datasource.password=" + oracleContainer.getPassword()
+            ).applyTo(configurableApplicationContext.getEnvironment());
+        }
     }
 }

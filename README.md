@@ -95,6 +95,10 @@ The REST interface of the backend is documented with OpenAPI and can be found:
 | ``docker-compose down`` | *stop* all the docker containers in the docker-compose file
 | ``docker-compose pull`` | *update* all the docker images in the docker-compose file
 
+## Related
+- [Sonar Cloud](https://sonarcloud.io/dashboard?id=markwigmans_fruitdemo)
+- [Docker Hub](https://hub.docker.com/u/markwigmans)
+
 ## Background Information
 - [Building a Web Application with Spring Boot and Angular](https://www.baeldung.com/spring-boot-angular-web);
 - [How to use environment variables to configure your Angular application without a rebuild](https://www.jvandemo.com/how-to-use-environment-variables-to-configure-your-angular-application-without-a-rebuild/);

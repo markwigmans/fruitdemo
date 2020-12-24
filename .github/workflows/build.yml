@@ -12,13 +12,6 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
-    services:
-      oracle:
-        image: oracleinanutshell/oracle-xe-11g
-        ports:
-          - "1521:1521"
-          - "5500:5500"
-
     steps:
       - uses: actions/checkout@v2
         with:
@@ -37,6 +30,6 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: SonarCloud Scan
-        run: mvn -B verify -Pcoverage,sonar -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dspring.profiles.active=db-service -Doracle.jdbc.timezoneAsRegion=false
+        run: mvn -B verify -Pcoverage,sonar -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Doracle.jdbc.timezoneAsRegion=false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

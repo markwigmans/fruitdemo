@@ -36,3 +36,4 @@ db_data/
 
 
 /env.dev
+/docker-config/env.dev

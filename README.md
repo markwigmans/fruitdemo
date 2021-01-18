@@ -19,14 +19,15 @@ The following tools are needed:
 mvn clean | clean environment
 mvn install | build self executable JAR files
 mvn install -P docker | build docker images
+mvn versions:display-property-updates | check if latest libraries needs to be updated.
 
 ## Configuration
 Configuration is done via Spring Cloud Config.
 
 | Component | Configuration file
 | --------- | ------------------ |
-| backend | backend.yml
-| frontend | frontend.yml
+| backend   | backend.yml
+| frontend  | frontend.yml
 
 ### Backend
 
